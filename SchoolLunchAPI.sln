@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolLunchAPI", "SchoolLunchAPI\SchoolLunchAPI.csproj", "{99E7F7B2-2327-4906-B1A9-6EFB9EBB1048}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{74814ECE-195F-4445-8F22-55A07D7D2832}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99E7F7B2-2327-4906-B1A9-6EFB9EBB1048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E7F7B2-2327-4906-B1A9-6EFB9EBB1048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E7F7B2-2327-4906-B1A9-6EFB9EBB1048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E7F7B2-2327-4906-B1A9-6EFB9EBB1048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74814ECE-195F-4445-8F22-55A07D7D2832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74814ECE-195F-4445-8F22-55A07D7D2832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74814ECE-195F-4445-8F22-55A07D7D2832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74814ECE-195F-4445-8F22-55A07D7D2832}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
