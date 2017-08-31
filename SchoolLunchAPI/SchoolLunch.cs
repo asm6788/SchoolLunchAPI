@@ -179,7 +179,8 @@ namespace SchoolLunchAPI
                         temp = 내용[i];
                     }
                 }
-
+                결과.Add(new 급식(temp.날짜, temp2));
+                
                 return 결과;
             }
         }
