@@ -27,7 +27,7 @@ namespace SchoolLunchAPI
 
     public class SchoolLunch
     {
-         static bool CheckNumber(string letter)
+        static bool CheckNumber(string letter)
         {
             bool IsCheck = true;
 
@@ -41,7 +41,35 @@ namespace SchoolLunchAPI
 
             return IsCheck;
         }
+        
+        static int CheckDigit(string input)
+        {
+            bool first = false;
+            bool twice = false;
+            if(Regex.IsMatch(input.Substring(input.Length - 1), @"^\d+$"))
+            {
+                first = true;
 
+            }
+            if (input.Length >= 2)
+            {
+                if (Regex.IsMatch(input.Substring(input.Length - 2), @"^\d+$"))
+                {
+                    twice = true;
+
+                }
+            }
+            if (first && twice)
+            {
+                return 2;
+            }
+            else if(first)
+            {
+                return 1;
+            }
+            return 0;
+
+        }
         public static List<급식> 급식불러오기(int Years, int Month, string ID, 관할지역 지역, 학교종류 종류)
         {
             string ResultOfstring = "0";
@@ -129,12 +157,12 @@ namespace SchoolLunchAPI
                 배열 = htmlCode.Split("<br />".ToCharArray()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
                 for (int i = 1; i < 배열.Length; i++)
                 {
-                    if (배열[i - 1].LastIndexOf(":") != -1)
+                    if (CheckDigit(배열[i - 1]) != 0)
                     {
-                        if (배열[i - 1].Remove(0, 배열[i - 1].LastIndexOf(":") + 1) != "")
+                        if (배열[i - 1].Remove(0, 배열[i - 1].Length - CheckDigit(배열[i - 1])) != "")
                         {
-                            날짜 = Convert.ToInt32(배열[i - 1].Remove(0, 배열[i - 1].LastIndexOf(":") + 1));
-                            배열[i - 1] = 배열[i - 1].Remove(배열[i - 1].LastIndexOf(":"));
+                            날짜 = Convert.ToInt32(배열[i - 1].Remove(0, 배열[i - 1].Length - CheckDigit(배열[i - 1])));
+                            배열[i - 1] = 배열[i - 1].Remove(배열[i - 1].Length - CheckDigit(배열[i - 1]), CheckDigit(배열[i - 1]));
                         }
                         내용.Add(new 급식(날짜, 배열[i - 1]));
                     }
@@ -158,11 +186,11 @@ namespace SchoolLunchAPI
                     }
                     else
                     {
-                        if (내용[i].급식메뉴.Length > 0 && temp2.Length - 1 > 0 && temp2.Length - 2 > 0)
+                        if (내용[i].급식메뉴.Length > 0 && temp2.Length - 1 >0 && temp2.Length - 2 > 0)
                         {
                             if (내용[i].급식메뉴[0] != ':')
                             {
-                                temp2 = temp2 + "\r\n" + 내용[i].급식메뉴;
+                                temp2 = temp2 + "\r\n" + 내용[i].급식메뉴.Remove(내용[i].급식메뉴.Length -1,1);
                             }
                             if (CheckNumber(temp2[temp2.Length - 1].ToString()) && CheckNumber(temp2[temp2.Length - 2].ToString()))
                             {
@@ -179,9 +207,8 @@ namespace SchoolLunchAPI
                         temp = 내용[i];
                     }
                 }
-                결과.Add(new 급식(temp.날짜, temp2));
-                
-                return 결과;
+
+                return 결과.Where(s => !string.IsNullOrWhiteSpace(s.급식메뉴)).Distinct().ToList();
             }
         }
     }
